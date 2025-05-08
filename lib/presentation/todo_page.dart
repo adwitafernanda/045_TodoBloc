@@ -86,6 +86,7 @@ class TodoPage extends StatelessWidget{
                           }
                         }
                       },
+                      child: Text('Tambah'),
                     ),
                   ],
                 ),
