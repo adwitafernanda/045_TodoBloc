@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todoapp/bloc/todo_bloc.dart';
 
 class TodoPage extends StatelessWidget{
@@ -25,7 +26,7 @@ class TodoPage extends StatelessWidget{
                           if (state is TodoLoaded) {
                             if (state.selectedDate != null) {
                               return Text(
-                                '${state.selectedDate.day}/${state.selectedDate.month}/${state.selectedDate.year}',
+                                '${state.selectedDate!.day}/${state.selectedDate!.month}/${state.selectedDate!.year}',
                               );
                             }
                           }
@@ -80,7 +81,7 @@ class TodoPage extends StatelessWidget{
                             context.read<TodoBloc>().add(
                               TodoEventAdd(
                                 title: _controller.text,
-                                date: selectedDate.selectedDate,
+                                date: selectedDate.selectedDate!,
                               ),
                             );
                             _controller.clear();
@@ -158,7 +159,9 @@ class TodoPage extends StatelessWidget{
                         }
                       );
                     }
-                    return Container();
+                    else {
+                      return Center(child: Text('No todos available'));
+                    }
                   },
                 ))
             ],
